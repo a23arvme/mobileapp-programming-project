@@ -44,6 +44,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public void setTempleList(ArrayList<Temple> list){
-        this.templeList = list;
+        this.templeList.clear();
+        this.templeList.addAll(list);
+        notifyDataSetChanged();
     }
 }
