@@ -21,17 +21,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a23arvme";
-    private final String JSON_FILE = "temples.json";
-
-    private ArrayList<Temple> templeList;
+    private MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        templeList = new ArrayList<>();
-
+        adapter = new MyAdapter();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,10 +52,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Temple>>() {}.getType();
-        templeList = gson.fromJson(json, type);
-        for (Temple t : templeList) {
-            Log.d("MainActivity", t.toString());
-        }
+        ArrayList<Temple> temp = gson.fromJson(json, type);
+        adapter.setTempleList(temp);
         Log.d("MainActivity", json);
 
     }
