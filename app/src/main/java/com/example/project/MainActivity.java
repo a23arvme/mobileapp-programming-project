@@ -23,9 +23,15 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a23arvme";
     private final String JSON_FILE = "temples.json";
 
+    private ArrayList<Temple> templeList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        templeList = new ArrayList<>();
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     @Override
     public void onPostExecute(String json) {
 
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<Temple>>() {}.getType();
+        templeList = gson.fromJson(json, type);
+        for (Temple t : templeList) {
+            Log.d("MainActivity", t.toString());
+        }
         Log.d("MainActivity", json);
 
     }

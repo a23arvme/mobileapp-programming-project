@@ -11,6 +11,6 @@ public class Temple {
     @NonNull
     @Override
     public String toString() {
-        return String.format("%s located in %s, build by %s", name, location, company);
+        return String.format("%s located in %s, built by %s", name, location, company);
     }
 }
