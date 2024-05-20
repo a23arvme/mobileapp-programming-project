@@ -8,6 +8,10 @@ public class Temple {
     private String company;
     private String location;
 
+    public String getName(){
+        return name;
+    }
+
     @NonNull
     @Override
     public String toString() {

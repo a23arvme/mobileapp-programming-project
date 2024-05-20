@@ -19,10 +19,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView myTextView;
+
+        TextView title;
+        TextView content;
         public ViewHolder(View view) {
             super(view);
-            myTextView = itemView.findViewById(R.id.text_view_item);
+            content = itemView.findViewById(R.id.text_view_item);
+            title = itemView.findViewById(R.id.item_title);
         }
     }
 
@@ -35,7 +38,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.myTextView.setText(templeList.get(i).toString());
+        viewHolder.title.setText(templeList.get(i).getName());
+        viewHolder.content.setText(templeList.get(i).toString());
+
     }
 
     @Override
