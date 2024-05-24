@@ -49,3 +49,116 @@ Realization that the data are pyramids, not temples, so title gets changed.
 12. Pyramidification
 Changes all mentions of temples to pyramids. 
 
+## Relevant Code 
+
+### AboutActivity
+```java
+public class AboutActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_about);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        Button aboutButton = findViewById(R.id.back_button);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AboutActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+}
+```
+### Pyramid class
+```java
+public class Pyramid {
+    private String id;
+    private String name;
+    private String company;
+    private String location;
+
+    public String getName(){
+        return name;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format("%s located in %s, built by %s", name, location, company);
+    }
+}
+
+```
+### Recycler Adapter
+```java
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+
+    private ArrayList<Pyramid> pyramidList;
+
+    public MyAdapter() {
+        this.pyramidList = new ArrayList<>();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView title;
+        TextView content;
+        public ViewHolder(View view) {
+            super(view);
+            content = itemView.findViewById(R.id.text_view_item);
+            title = itemView.findViewById(R.id.item_title);
+        }
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_view_item, viewGroup, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        viewHolder.title.setText(pyramidList.get(i).getName());
+        viewHolder.content.setText(pyramidList.get(i).toString());
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return pyramidList.size();
+    }
+
+    public void setPyramidList(ArrayList<Pyramid> list){
+        this.pyramidList.clear();
+        this.pyramidList.addAll(list);
+        notifyDataSetChanged();
+    }
+}
+```
+### Json process
+``` java
+@Override
+public void onPostExecute(String json) {
+
+    Gson gson = new Gson();
+    Type type = new TypeToken<ArrayList<Pyramid>>() {}.getType();
+    ArrayList<Pyramid> temp = gson.fromJson(json, type);
+    adapter.setPyramidList(temp);
+    Log.d("MainActivity", json);
+
+}
+```
+
+## Fancy pictures
+
+![](main.png) 
+
+![](about.png) 
+
+
+
+
