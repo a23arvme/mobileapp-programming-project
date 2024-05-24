@@ -1,42 +1,51 @@
 
-# Rapport
+# Report
 
-**Skriv din rapport här!**
+## Each commit described
 
-_Du kan ta bort all text som finns sedan tidigare_.
+1. JsonTask
+JsonTask.java added from the previous assignment. 
 
-## Följande grundsyn gäller dugga-svar:
+2. AboutActivity
+Activity created for the about page. This includes activity_about.xml, AboutActivity.java and an entry in AndroidManifest.xml.
+The java file was forgotten until the Recycler Adapter was created. 
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+3. Toolbar Button
+Adds a button to the MainActivity, containing logic to redirect you to the about page.
+Initially this looks horrible because the button is placed wrongly in the xml. this is fixed in the next commit.
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+4. Toolbar Button both ways
+Implements the same button the same way in the AboutActivity, redirecting you back to the main activity.
+Also fixes the position of both buttons so they fit nicely inside the toolbar. 
 
-```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
-```
+5. Successful JSON retrieval
+This commit enables internet access and successfully retrieves the data from the internet. 
+The JsonFile.java was added here but is later removed. 
+It also changes the title to a semi-appropriate name "Meso-American Temples".
 
-Bilder läggs i samma mapp som markdown-filen.
+6. Temple class
+The temple class is created to enable demarshalling of the JSON. It contains the required variables and a simple toString() override. 
 
-![](android.png)
+7. Gson
+A list of temples is created to contain the demarshalled data. Using the Gson library the data is put into objects of type 'temple'. 
 
-Läs gärna:
+8. Recycler Adapter + forgotten file
+AboutActivity is added to git here. 
+A whole new class 'MyAdapter' is added for the RecyclerView. This implementation has a single TextView displaying the toString() of each temple. 
+recycler_view_item.xml contains a simple monospaced layout for the text. 
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+9. Working recyclerView
+The centered TextView in the main activity is now replaced with a RecyclerView. 
+The setTempleList method inside MyAdapter is modified to properly display the content using notifyDataSetChanged();
+
+10.  titles
+Modifies MyAdapter to contain an additional text view for titles for each temple. 
+This also requires an additional TextView to be added to recycler_view_item.xml, and a small getter for the temple name.
+
+11. formatting
+Changes colors of the toolbar and the app icon, with other small changes.
+Realization that the data are pyramids, not temples, so title gets changed.
+
+12. Pyramidification
+Changes all mentions of temples to pyramids. 
+
