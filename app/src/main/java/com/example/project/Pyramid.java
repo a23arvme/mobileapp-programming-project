@@ -2,7 +2,7 @@ package com.example.project;
 
 import androidx.annotation.NonNull;
 
-public class Temple {
+public class Pyramid {
     private String id;
     private String name;
     private String company;

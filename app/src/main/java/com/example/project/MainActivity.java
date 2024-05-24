@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     public void onPostExecute(String json) {
 
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Temple>>() {}.getType();
-        ArrayList<Temple> temp = gson.fromJson(json, type);
-        adapter.setTempleList(temp);
+        Type type = new TypeToken<ArrayList<Pyramid>>() {}.getType();
+        ArrayList<Pyramid> temp = gson.fromJson(json, type);
+        adapter.setPyramidList(temp);
         Log.d("MainActivity", json);
 
     }

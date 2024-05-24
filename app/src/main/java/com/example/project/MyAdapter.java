@@ -12,10 +12,10 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private ArrayList<Temple> templeList;
+    private ArrayList<Pyramid> pyramidList;
 
     public MyAdapter() {
-        this.templeList = new ArrayList<>();
+        this.pyramidList = new ArrayList<>();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -38,19 +38,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.title.setText(templeList.get(i).getName());
-        viewHolder.content.setText(templeList.get(i).toString());
+        viewHolder.title.setText(pyramidList.get(i).getName());
+        viewHolder.content.setText(pyramidList.get(i).toString());
 
     }
 
     @Override
     public int getItemCount() {
-        return templeList.size();
+        return pyramidList.size();
     }
 
-    public void setTempleList(ArrayList<Temple> list){
-        this.templeList.clear();
-        this.templeList.addAll(list);
+    public void setPyramidList(ArrayList<Pyramid> list){
+        this.pyramidList.clear();
+        this.pyramidList.addAll(list);
         notifyDataSetChanged();
     }
 }
